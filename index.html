@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Assignment</title>
+    <style>
+        body {
+            display: flex;
+        }
+
+        body h1 {
+            font-size: 4rem;
+        }
+
+        #left-panel {
+            width: 20%;
+            height: 100vh;
+            background-color: #267766;
+            padding: 20px;
+            color: bisque;
+        }
+
+        #content {
+            width: 80%;
+            padding: 20px;
+        }
+
+        .component {
+            margin-bottom: 10px;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .active {
+            background-color: rgb(1, 69, 69);
+        }
+
+        #home-content {
+            text-align: center;
+        }
+
+        ul {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* styles for extra section */
+        .banner {
+            margin-top: 70px;
+            width: 100%;
+            display: flex;
+            height: 50vh;
+        }
+
+        .banner img {
+            border-radius: 20px;
+            width: 50%;
+        }
+
+        #dynamic-div {
+            text-align: left;
+            width: 50%;
+            padding: 20px;
+            font-size: 18px;
+        }
+    </style>
+    <script>
+        function showContent(component) {
+            var contentDivs = document.getElementsByClassName("content");
+            var components = document.getElementsByClassName("component");
+            var selectedContent = document.getElementById(component + "-content");
+            var selectedComponent = document.getElementById(component);
+            console.log("selectedComponent", selectedComponent, "selectedContent:", selectedContent)
+            for (var i = 0; i < contentDivs.length; i++) {
+                contentDivs[i].style.display = "none";
+            }
+            for (var i = 0; i < components.length; i++) {
+                components[i].classList.remove("active");
+            }
+            selectedContent.style.display = "block";
+            selectedComponent.classList.add("active");
+        }
+        //dynamic div 
+        document.addEventListener("DOMContentLoaded", function () {
+            var dynamicDiv = document.getElementById("dynamic-div");
+            var texts = [
+                "The exclusive website that takes into consideration your unique needs and delivers exceptional services beyond your expectations!",
+                "Experience the unparalleled website that understands your requirements and surpasses all expectations by providing top-notch services!",
+                "Discover the one-of-a-kind website that prioritizes your capabilities and offers the utmost level of service that exceeds your every anticipation!"
+            ];
+            var currentIndex = 0;
+
+            setInterval(function () {
+                dynamicDiv.textContent = texts[currentIndex];
+                currentIndex = (currentIndex + 1) % texts.length;
+            }, 2000);
+        });
+    </script>
+</head>
+
+<body>
+    <div id="left-panel">
+        <div id="home" class="component" onclick="showContent('home')">Home</div>
+        <div id="contact" class="component" onclick="showContent('contact')">Contact</div>
+        <div id="information" class="component" onclick="showContent('information')">Information</div>
+        <div id="guide" class="component" onclick="showContent('guide')">Guide</div>
+    </div>
+    <div id="content">
+        <div id="home-content" class="content">
+            <h1>Welcome to the Home page!</h1>
+            <div class="banner">
+                <img src="https://i.ibb.co/12137t3/banner.jpg" id="">
+                <div id="dynamic-div">The only website that thinks about your capacity and provides the best service you
+                    can expect.</div>
+            </div>
+        </div>
+        <div id="contact-content" class="content" style="display: none;">
+            <h1>Contact Information</h1>
+            <p>Contact details are menyioned below:</p>
+            <ul>
+                <li>Email: sumona59shimu@gmail.com</li>
+                <li>Phone: 123-456-7899</li>
+                <li>Address: Dhaka, Bangladesh</li>
+            </ul>
+        </div>
+        <div id="information-content" class="content" style="display: none;">
+            <h1>Information Page</h1>
+            <p>This is some informations you may know: </p>
+            <ul>
+                <a href="#">Our Services</a>
+                <a href="#">Reviews</a>
+                <a href="#">Offers</a>
+                <a href="#">Sponsors</a>
+            </ul>
+        </div>
+        <div id="guide-content" class="content" style="display: none;">
+            <h1>Guide Page</h1>
+            <p>This is a guide to using our website.</p>
+            <ul>
+                <li>There is a services section where you can see the services</li>
+                <li>There is a offers section to purchase cheaply</li>
+                <li>There is a Reviews section to see the curtomer reviews</li>
+                <li>There is a Sponsors section to know about the sponsors. You can also sponsor us by filling the form
+                    porided there.</li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>
